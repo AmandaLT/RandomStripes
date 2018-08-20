@@ -4,5 +4,11 @@
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="RandomStripes.Views.ColourSelectPage">
-  
+    
+    <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+        <Label Text="{Binding RowCount, StringFormat='Row count: {0}'}" HorizontalOptions="Center"/>
+        <Label Text="{Binding RowHeights, StringFormat='Row heights: {0}'}" HorizontalOptions="Center"/>
+        <Button Text="Custom colours select" Command="{Binding NextCommand}" CommandParameter="Custom"/>
+        <Button Text="Select colours from a palette" Command="{Binding NextCommand}" CommandParameter="Palette"/>
+    </StackLayout>
 </ContentPage>

@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="RandomStripes.Views.RowHeightsPage">
 
@@ -11,23 +12,43 @@
         
         <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
             <Label Text="1" HorizontalOptions="StartAndExpand" VerticalOptions="Center"/>
-            <Switch x:Name="oneheight" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent"/>
+            <Switch x:Name="oneheight" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent">
+                <Switch.Behaviors>
+                    <b:EventToCommandBehavior EventName="Toggled" Command="{Binding ToggledCommand}" CommandParameter="1"/>
+                </Switch.Behaviors>
+            </Switch>
         </StackLayout>
         <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
             <Label Text="2" HorizontalOptions="StartAndExpand" VerticalOptions="Center"/>
-            <Switch x:Name="twoheight" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent"/>
+            <Switch x:Name="twoheight" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent">
+                <Switch.Behaviors>
+                    <b:EventToCommandBehavior EventName="Toggled" Command="{Binding ToggledCommand}" CommandParameter="2"/>
+                </Switch.Behaviors>
+            </Switch>
         </StackLayout>
         <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
             <Label Text="3" HorizontalOptions="StartAndExpand" VerticalOptions="Center"/>
-            <Switch x:Name="threeheight" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent"/>
+            <Switch x:Name="threeheight" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent">
+                <Switch.Behaviors>
+                    <b:EventToCommandBehavior EventName="Toggled" Command="{Binding ToggledCommand}" CommandParameter="3"/>
+                </Switch.Behaviors>
+            </Switch>
         </StackLayout>
         <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
             <Label Text="4" HorizontalOptions="StartAndExpand" VerticalOptions="Center"/>
-            <Switch x:Name="fourheight" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent"/>
+            <Switch x:Name="fourheight" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent">
+                <Switch.Behaviors>
+                    <b:EventToCommandBehavior EventName="Toggled" Command="{Binding ToggledCommand}" CommandParameter="4"/>
+                </Switch.Behaviors>
+            </Switch>
         </StackLayout>
         <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
             <Label Text="5" HorizontalOptions="StartAndExpand" VerticalOptions="Center"/>
-            <Switch x:Name="fiveheight" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent"/>
+            <Switch x:Name="fiveheight" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent">
+                <Switch.Behaviors>
+                    <b:EventToCommandBehavior EventName="Toggled" Command="{Binding ToggledCommand}" CommandParameter="5"/>
+                </Switch.Behaviors>
+            </Switch>
         </StackLayout>
         
         <Button Text="Next" Command="{Binding NextCommand}"/>

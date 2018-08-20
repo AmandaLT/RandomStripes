@@ -36,5 +36,19 @@ namespace RandomStripes
                 Application.Current.SavePropertiesAsync();
             }
         }
+
+        public static List<int> RowHeights
+        {
+            get
+            {
+                var heights = Application.Current.Properties["RowHeight"].ToString();
+                return JsonConvert.DeserializeObject<List<int>>(heights);
+            }
+            set
+            {
+                Application.Current.Properties["RowHeight"] = JsonConvert.SerializeObject(value);
+                Application.Current.SavePropertiesAsync();
+            }
+        }
     }
 }

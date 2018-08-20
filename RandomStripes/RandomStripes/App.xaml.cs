@@ -34,6 +34,8 @@ namespace RandomStripes
             containerRegistry.RegisterForNavigation<RowNumberPage>();
             containerRegistry.RegisterForNavigation<RowHeightsPage>();
             containerRegistry.RegisterForNavigation<ColourSelectPage>();
+            containerRegistry.RegisterForNavigation<CustomColourSelectPage>();
+            containerRegistry.RegisterForNavigation<PaletteColourSelectPage>();
         }
     }
 }

@@ -13,20 +13,37 @@ namespace RandomStripes.ViewModels
     {
        
         public ICommand NextCommand { get; set; }
+        public ICommand ToggledCommand { get; set; }
+        private List<int> rowHeights { get; set; }
 
         public RowHeightsPageViewModel(INavigationService navigationService)
             : base(navigationService)
         {
             Title = "Row Heights";
 
+            rowHeights = new List<int>();
+
             NextCommand = new Command(NextPage);
+            ToggledCommand = new Command<string>(HeightToggled);
+        }
+
+        private void HeightToggled(string heightString)
+        {
+            var height = int.Parse(heightString);
+            if(rowHeights.Contains(height))
+            {
+                rowHeights.Remove(height);
+            }
+            else
+            {
+                rowHeights.Add(height);
+            }
         }
 
         private void NextPage()
         {
-            //var rowsCount = int.Parse(rows);
-            //AppData.RowCount = rowsCount;
-            NavigationService.NavigateAsync("ColourSelectPage");
+            AppData.RowHeights = rowHeights;
+           NavigationService.NavigateAsync("ColourSelectPage");
         }
     }
 }
