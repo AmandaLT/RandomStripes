@@ -5,6 +5,7 @@ using RandomStripes.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Prism.Unity;
+using RandomStripes.Services;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace RandomStripes
@@ -36,6 +37,10 @@ namespace RandomStripes
             containerRegistry.RegisterForNavigation<ColourSelectPage>();
             containerRegistry.RegisterForNavigation<CustomColourSelectPage>();
             containerRegistry.RegisterForNavigation<PaletteColourSelectPage>();
+
+            containerRegistry.Register<IAppDataService, AppDataService>();
+            containerRegistry.Register<IColoursService, ColoursInMemoryService>();
+            
         }
     }
 }

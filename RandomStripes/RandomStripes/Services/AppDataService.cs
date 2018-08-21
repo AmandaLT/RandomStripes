@@ -5,10 +5,10 @@ using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
 
-namespace RandomStripes
+namespace RandomStripes.Services
 {
-    public static class AppData
-    {
+    public class AppDataService : IAppDataService
+     {
         //public static PatternDetails PatternDetails
         //{
         //    get
@@ -23,7 +23,7 @@ namespace RandomStripes
         //    }
         //}
 
-        public static int RowCount
+        public int RowCount
         {
             get
             {
@@ -37,7 +37,7 @@ namespace RandomStripes
             }
         }
 
-        public static List<int> RowHeights
+        public List<int> RowHeights
         {
             get
             {

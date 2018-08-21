@@ -1,6 +1,7 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
+using RandomStripes.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,8 +15,8 @@ namespace RandomStripes.ViewModels
     {
         public ICommand NextCommand { get; set; }
 
-        public MainPageViewModel(INavigationService navigationService)
-            : base(navigationService)
+        public MainPageViewModel(INavigationService navigationService, IAppDataService appDataService)
+         : base(navigationService, appDataService)
         {
             Title = "Main Page";
 

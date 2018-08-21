@@ -1,6 +1,7 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
+using RandomStripes.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,13 +28,13 @@ namespace RandomStripes.ViewModels
 
         public ICommand NextCommand { get; set; }
 
-        public ColourSelectPageViewModel(INavigationService navigationService)
-         : base(navigationService)
+        public ColourSelectPageViewModel(INavigationService navigationService, IAppDataService appDataService)
+         : base(navigationService, appDataService)
         {
             Title = "Colour Selection";
 
-            RowCount = AppData.RowCount;
-            RowHeights = string.Join(",", AppData.RowHeights);
+            RowCount = _appDataService.RowCount;
+            RowHeights = string.Join(",", _appDataService.RowHeights);
 
             NextCommand = new Command<string>(NextPage);
         }

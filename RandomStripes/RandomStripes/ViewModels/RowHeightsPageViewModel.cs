@@ -1,6 +1,8 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
+using Prism.Services;
+using RandomStripes.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,13 +16,16 @@ namespace RandomStripes.ViewModels
        
         public ICommand NextCommand { get; set; }
         public ICommand ToggledCommand { get; set; }
-        private List<int> rowHeights { get; set; }
+        public List<int> rowHeights { get; set; }
 
-        public RowHeightsPageViewModel(INavigationService navigationService)
-            : base(navigationService)
+        private IPageDialogService _dialogService;
+
+        public RowHeightsPageViewModel(INavigationService navigationService, IAppDataService appDataService, IPageDialogService dialogService)
+         : base(navigationService, appDataService)
         {
             Title = "Row Heights";
 
+            _dialogService = dialogService;
             rowHeights = new List<int>();
 
             NextCommand = new Command(NextPage);
@@ -40,9 +45,14 @@ namespace RandomStripes.ViewModels
             }
         }
 
-        private void NextPage()
+        public void NextPage()
         {
-            AppData.RowHeights = rowHeights;
+            if(!rowHeights.Any())
+            {
+                _dialogService.DisplayAlertAsync("", "Oops, please select at least one row height", "Ok");
+                return;
+            }
+           _appDataService.RowHeights = rowHeights;
            NavigationService.NavigateAsync("ColourSelectPage");
         }
     }
