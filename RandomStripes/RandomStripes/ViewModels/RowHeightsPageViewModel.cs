@@ -32,7 +32,7 @@ namespace RandomStripes.ViewModels
             ToggledCommand = new Command<string>(HeightToggled);
         }
 
-        private void HeightToggled(string heightString)
+        public void HeightToggled(string heightString)
         {
             var height = int.Parse(heightString);
             if(rowHeights.Contains(height))

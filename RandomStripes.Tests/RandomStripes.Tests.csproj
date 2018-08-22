@@ -113,6 +113,8 @@
   <ItemGroup>
     <Compile Include="Services\ColoursInMemoryServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\ColourSelectPageViewModelTests.cs" />
+    <Compile Include="ViewModels\CustomColourSelectPageViewModelTests.cs" />
     <Compile Include="ViewModels\RowHeightsPageViewModelTests.cs" />
     <Compile Include="ViewModels\RowNumberPageViewModelTests.cs" />
   </ItemGroup>

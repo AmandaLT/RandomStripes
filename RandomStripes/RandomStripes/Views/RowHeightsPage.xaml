@@ -50,8 +50,8 @@
                 </Switch.Behaviors>
             </Switch>
         </StackLayout>
-        
-        <Button Text="Next" Command="{Binding NextCommand}"/>
+
+        <Button Text="Next" Command="{Binding NextCommand}" Style="{StaticResource PurpleButton}" />
     </StackLayout>
     
 </ContentPage>

@@ -9,6 +9,6 @@
         <Label Text="Please enter the total number of rows"/>
         <Entry x:Name="Rows" Placeholder="Number of rows" Keyboard="Numeric" />
         <Button Text="Next" Command="{Binding NextCommand}"
-                CommandParameter="{Binding Source={x:Reference Rows}, Path=Text}"/>
+                CommandParameter="{Binding Source={x:Reference Rows}, Path=Text}" Style="{StaticResource PurpleButton}" />
     </StackLayout>
 </ContentPage>

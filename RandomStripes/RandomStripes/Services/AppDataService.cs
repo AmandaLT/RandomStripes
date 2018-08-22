@@ -50,5 +50,19 @@ namespace RandomStripes.Services
                 Application.Current.SavePropertiesAsync();
             }
         }
+
+        public List<ColourItem> SelectedColours
+        {
+            get
+            {
+                var colours = Application.Current.Properties["SelectedColours"].ToString();
+                return JsonConvert.DeserializeObject<List<ColourItem>>(colours);
+            }
+            set
+            {
+                Application.Current.Properties["SelectedColours"] = JsonConvert.SerializeObject(value);
+                Application.Current.SavePropertiesAsync();
+            }
+        }
     }
 }

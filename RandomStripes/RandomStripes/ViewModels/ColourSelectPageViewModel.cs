@@ -39,7 +39,7 @@ namespace RandomStripes.ViewModels
             NextCommand = new Command<string>(NextPage);
         }
 
-        private void NextPage(string colourSelectType)
+        public void NextPage(string colourSelectType)
         {
             if (colourSelectType.ToLower() == "custom")
             {

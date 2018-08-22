@@ -45,5 +45,32 @@ namespace RandomStripes.Tests.ViewModels
 
             _navigationService.Verify(n => n.NavigateAsync(It.IsAny<string>()), Times.Once);
         }
+
+        [TestMethod]
+        public void HeightToggled_HeightExists_IsRemovedFromList()
+        {
+            model.rowHeights.Add(1);
+            model.rowHeights.Add(3);
+
+            model.HeightToggled("3");
+
+            var rowHeights = model.rowHeights;
+
+            Assert.AreEqual(1, rowHeights.Count);
+            Assert.IsFalse(model.rowHeights.Contains(3));
+        }
+
+        [TestMethod]
+        public void HeightToggled_HeightDoesntExist_IsAddedToList()
+        {
+            model.rowHeights.Add(1);
+
+            model.HeightToggled("5");
+
+            var rowHeights = model.rowHeights;
+
+            Assert.AreEqual(2, rowHeights.Count);
+            Assert.IsTrue(model.rowHeights.Contains(5));
+        }
     }
 }

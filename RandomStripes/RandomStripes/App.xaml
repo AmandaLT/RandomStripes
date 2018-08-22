@@ -7,6 +7,10 @@
 
         <ResourceDictionary>
             <Color x:Key="PurpleColour">#c98cd4</Color>
+            <Style x:Key="PurpleButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource PurpleColour}"/>
+                <Setter Property="TextColor" Value="White"/>
+            </Style>
         </ResourceDictionary>
 
     </Application.Resources>

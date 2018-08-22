@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RandomStripes.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -8,5 +9,6 @@ namespace RandomStripes.Services
     {
         int RowCount { get; set; }
         List<int> RowHeights { get; set; }
+        List<ColourItem> SelectedColours { get; set; }
     }
 }
