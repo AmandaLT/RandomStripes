@@ -52,8 +52,12 @@
             </ListView>
         </ScrollView>
 
-        <Button Text="Create stripes" Command="{Binding NextCommand}" BackgroundColor="{StaticResource PurpleColour}" TextColor="White" />
-
+        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+        <Button Text="Create ordered stripes" Command="{Binding NextCommand}" CommandParameter="ordered"
+               HorizontalOptions="Start" BackgroundColor="{StaticResource PurpleColour}" TextColor="White" />
+            <Button Text="Create random stripes" Command="{Binding NextCommand}" CommandParameter="random"
+                HorizontalOptions="End"  BackgroundColor="{StaticResource PurpleColour}" TextColor="White" />
+        </StackLayout>
     </StackLayout>
 
 </ContentPage>

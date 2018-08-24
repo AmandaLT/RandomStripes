@@ -23,7 +23,7 @@ namespace RandomStripes.ViewModels
             :base(navigationService, appDataService)
         {
             ColourSelectCommand = new Command<ColourItem>(ColourSelect);
-            NextCommand = new Command(NextPage);
+            NextCommand = new Command<string>(NextPage);
 
             _coloursService = coloursService;
             Colours = _coloursService.GetColours();
@@ -34,12 +34,20 @@ namespace RandomStripes.ViewModels
             colour.IsSelected = !colour.IsSelected;
         }
 
-        public void NextPage()
+        public void NextPage(string stripeType)
         {
-            var selectedColours = Colours.Where(c => c.IsSelected).ToList();
-            _appDataService.SelectedColours = selectedColours;
+            try
+            {
+                var selectedColours = Colours.Where(c => c.IsSelected).ToList();
+                _appDataService.SelectedColours = selectedColours;
 
-            NavigationService.NavigateAsync("StripesPage");
+                bool randomStripes = stripeType == "random";
+                NavigationService.NavigateAsync($"StripesPage?random={randomStripes}");
+            }
+            catch(Exception ex)
+            {
+                var s = ex.Message;
+            }
         }
     }
 }

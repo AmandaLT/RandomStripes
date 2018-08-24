@@ -47,12 +47,12 @@ namespace RandomStripes.Tests.ViewModels
         {
             model = new CustomColourSelectPageViewModel(_navigationService.Object, _appDataService.Object, _coloursService.Object);
 
-            ColourItem selectedColourItem = new ColourItem { ColourData = new Xamarin.Forms.Color(), IsSelected = true, Name = "SelectedColour" };
+            ColourItem selectedColourItem = new ColourItem { ColourData ="hex", IsSelected = true, Name = "SelectedColour" };
             model.Colours = new List<ColourItem>
             {
                 selectedColourItem,
-                new ColourItem{ ColourData = new Xamarin.Forms.Color(), IsSelected=false, Name="UnSelectedColour" },
-                new ColourItem{ ColourData = new Xamarin.Forms.Color(), IsSelected=false, Name="UnSelectedColour2" },
+                new ColourItem{ ColourData = "hex1", IsSelected=false, Name="UnSelectedColour" },
+                new ColourItem{ ColourData = "hex2", IsSelected=false, Name="UnSelectedColour2" },
             };
 
             model.ColourSelect(selectedColourItem);

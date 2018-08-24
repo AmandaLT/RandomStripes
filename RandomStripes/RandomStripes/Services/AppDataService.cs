@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using RandomStripes.Models;
+using RandomStripes.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;

@@ -5,7 +5,30 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="RandomStripes.Views.StripesPage">
 
-    <StackLayout HorizontalOptions="Center">
-        <Label Text="{Binding ColoursString}"></Label>
+    <StackLayout >
+        <ListView ItemsSource="{Binding Stripes}" HasUnevenRows="True"  SeparatorVisibility="None">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <BoxView HeightRequest="15" Color="{Binding ColourData}" VerticalOptions="Center" />
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+
+        <Button Text="New stripes!" Command="{Binding GenerateStripesCommand}" BackgroundColor="{StaticResource PurpleColour}" 
+                TextColor="White">
+            <Button.Triggers>
+                <DataTrigger TargetType="Button" Binding="{Binding RandomStripes}" Value="True">
+                    <Setter Property="IsVisible" Value="True" />
+                </DataTrigger>
+                <DataTrigger TargetType="Button" Binding="{Binding RandomStripes}" Value="False">
+                    <Setter Property="IsVisible" Value="False" />
+                </DataTrigger>
+            </Button.Triggers>
+        </Button>
+
     </StackLayout>
+    
 </ContentPage>

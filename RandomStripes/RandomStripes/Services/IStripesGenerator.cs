@@ -6,8 +6,8 @@ using System.Text;
 
 namespace RandomStripes.Services
 {
-    public interface IColoursService
+    public interface IStripesGenerator
     {
-        List<ColourItem> GetColours();
+        List<ColourItem> GenerateStripes(bool random);
     }
 }

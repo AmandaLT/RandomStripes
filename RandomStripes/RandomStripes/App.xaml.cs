@@ -40,6 +40,7 @@ namespace RandomStripes
 
             containerRegistry.Register<IAppDataService, AppDataService>();
             containerRegistry.Register<IColoursService, ColoursInMemoryService>();
+            containerRegistry.Register<IStripesGenerator, StripesGenerator>();
 
             containerRegistry.RegisterForNavigation<StripesPage>();
         }
