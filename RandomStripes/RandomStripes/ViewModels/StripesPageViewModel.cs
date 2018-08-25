@@ -45,9 +45,7 @@ namespace RandomStripes.ViewModels
             _stripesGenerator = stripesGenerator;
 
             ColoursString = string.Join(", ", _appDataService.SelectedColours.Select(c =>c.Name));
-
-            Stripes = _stripesGenerator.GenerateStripes(RandomStripes);
-
+                        
             GenerateStripesCommand = new Command(GetStripes);
         }
         
@@ -58,7 +56,8 @@ namespace RandomStripes.ViewModels
         
         public void OnNavigatingTo(NavigationParameters parameters)
         {
-            RandomStripes = bool.Parse(parameters["random"].ToString());            
+            RandomStripes = bool.Parse(parameters["random"].ToString());
+            Stripes = _stripesGenerator.GenerateStripes(RandomStripes);
         }
     }
 }

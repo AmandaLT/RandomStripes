@@ -23,7 +23,7 @@ namespace RandomStripes.Services
         {
             try
             {
-                if (_totalRows <= 0 && !_selectedColours.Any())
+                if (_totalRows <= 0 || !_selectedColours.Any())
                 {
                     return new List<ColourItem>();
                 }
