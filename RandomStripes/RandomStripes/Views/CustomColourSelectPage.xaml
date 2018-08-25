@@ -10,54 +10,74 @@
             <Color x:Key="GreyListItem">#eeeeee</Color>
         </ResourceDictionary>
     </ContentPage.Resources>
-    
-    <StackLayout HorizontalOptions="CenterAndExpand">
-        <!--<StackLayout >
-            <Label Text="Selected colours" Margin="10,10,10,0"/>
-            <StackLayout Orientation="Horizontal"  Margin="10" Padding="10">
-                <BoxView HeightRequest="40" WidthRequest="40" Color="Red" VerticalOptions="Center" Margin="10,0,20,0"/>
+
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="CenterAndExpand">
+
+            <StackLayout VerticalOptions="Start" BackgroundColor="Transparent">
+                <RelativeLayout VerticalOptions="Start"  BackgroundColor="Transparent" HeightRequest="50">
+                    <ListView  Rotation="270" ItemsSource="{Binding SelectedColours}"  SeparatorVisibility="None" HasUnevenRows="True"
+                              RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.5, Constant=-50}"
+                              RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=-0.5, Constant=0}"
+                              RelativeLayout.WidthConstraint="{ConstraintExpression Type=Constant, Constant=100}"
+                              RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                              CachingStrategy="RecycleElement">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <ContentView BackgroundColor="Transparent">
+                                        <StackLayout HeightRequest="40"
+												 WidthRequest="40"
+                                                 HorizontalOptions="Start"
+                                                 VerticalOptions="Start">
+                                            <BoxView Color="{Binding ColourData}" HeightRequest="40" WidthRequest="40" VerticalOptions="Center"/>
+                                        </StackLayout>
+                                    </ContentView>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </RelativeLayout>
+            </StackLayout>
+
+            <Label Text="Select your colours" Margin="10"/>
+            <ScrollView VerticalOptions="FillAndExpand">
+                <ListView ItemsSource="{Binding Colours}" RowHeight="100" HasUnevenRows="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame Margin="5" Padding="5" CornerRadius="10" BackgroundColor="{StaticResource GreyListItem}">
+                                    <StackLayout Orientation="Horizontal" VerticalOptions="Center" HeightRequest="60">
+                                        <BoxView HeightRequest="40" WidthRequest="40" Color="{Binding ColourData}" VerticalOptions="Center" Margin="10,0,20,0"/>
+                                        <Label Text="{Binding Name}" TextColor="Black" HorizontalOptions="StartAndExpand" VerticalOptions="Center" />
+                                        <Label Text="Selected" VerticalOptions="Center" HorizontalOptions="End" Margin="10,0,20,0">
+                                            <Label.Triggers>
+                                                <DataTrigger TargetType="Label" Binding="{Binding IsSelected}" Value="True">
+                                                    <Setter Property="IsVisible" Value="True" />
+                                                </DataTrigger>
+                                                <DataTrigger TargetType="Label" Binding="{Binding IsSelected}" Value="False">
+                                                    <Setter Property="IsVisible" Value="False" />
+                                                </DataTrigger>
+                                            </Label.Triggers>
+                                        </Label>
+                                    </StackLayout>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding BindingContext.ColourSelectCommand, Source={x:Reference ColourSelectPage}}" CommandParameter="{Binding .}"/>
+                                    </Frame.GestureRecognizers>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollView>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <Button Text="Create ordered stripes" Command="{Binding NextCommand}" CommandParameter="ordered"
+               HorizontalOptions="Start" BackgroundColor="{StaticResource PurpleColour}" TextColor="White" />
+                <Button Text="Create random stripes" Command="{Binding NextCommand}" CommandParameter="random"
+                HorizontalOptions="End"  BackgroundColor="{StaticResource PurpleColour}" TextColor="White" />
             </StackLayout>
         </StackLayout>
-
-        <BoxView HeightRequest="1"  Color="Gray" VerticalOptions="Center"/>-->
-
-        <Label Text="Select your colours" Margin="10"/>
-        <ScrollView VerticalOptions="FillAndExpand">
-            <ListView ItemsSource="{Binding Colours}" RowHeight="100" HasUnevenRows="True">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Frame Margin="5" Padding="5" CornerRadius="10" BackgroundColor="{StaticResource GreyListItem}">
-                                <StackLayout Orientation="Horizontal" VerticalOptions="Center" HeightRequest="60">
-                                    <BoxView HeightRequest="40" WidthRequest="40" Color="{Binding ColourData}" VerticalOptions="Center" Margin="10,0,20,0"/>
-                                    <Label Text="{Binding Name}" TextColor="Black" HorizontalOptions="StartAndExpand" VerticalOptions="Center" />
-                                    <Label Text="Selected" VerticalOptions="Center" HorizontalOptions="End" Margin="10,0,20,0">
-                                        <Label.Triggers>
-                                            <DataTrigger TargetType="Label" Binding="{Binding IsSelected}" Value="True">
-                                                <Setter Property="IsVisible" Value="True" />
-                                            </DataTrigger>
-                                            <DataTrigger TargetType="Label" Binding="{Binding IsSelected}" Value="False">
-                                                <Setter Property="IsVisible" Value="False" />
-                                            </DataTrigger>
-                                        </Label.Triggers>
-                                    </Label>
-                                </StackLayout>
-                                <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding BindingContext.ColourSelectCommand, Source={x:Reference ColourSelectPage}}" CommandParameter="{Binding .}"/>
-                                </Frame.GestureRecognizers>
-                            </Frame>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </ScrollView>
-
-        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-        <Button Text="Create ordered stripes" Command="{Binding NextCommand}" CommandParameter="ordered"
-               HorizontalOptions="Start" BackgroundColor="{StaticResource PurpleColour}" TextColor="White" />
-            <Button Text="Create random stripes" Command="{Binding NextCommand}" CommandParameter="random"
-                HorizontalOptions="End"  BackgroundColor="{StaticResource PurpleColour}" TextColor="White" />
-        </StackLayout>
-    </StackLayout>
-
+    </ContentPage.Content>
+  
 </ContentPage>

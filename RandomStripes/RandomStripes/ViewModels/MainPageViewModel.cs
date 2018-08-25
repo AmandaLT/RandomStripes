@@ -18,14 +18,13 @@ namespace RandomStripes.ViewModels
         public MainPageViewModel(INavigationService navigationService, IAppDataService appDataService)
          : base(navigationService, appDataService)
         {
-            Title = "Main Page";
+            Title = "Random Stripes Generator";
 
             NextCommand = new Command(NextPage);
         }
 
         private void NextPage()
         {
-            // save the row number
             NavigationService.NavigateAsync("RowNumberPage");
         }
     }

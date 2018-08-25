@@ -25,7 +25,7 @@ namespace RandomStripes.Tests.ViewModels
             _coloursService = new Mock<IColoursService>();
             _navigationService = new Mock<INavigationService>();
             _appDataService = new Mock<IAppDataService>();
-            _dialogService = new Mock<IPageDialogService>();
+            _dialogService = new Mock<IPageDialogService>();          
         }
 
         [TestMethod]
@@ -44,21 +44,47 @@ namespace RandomStripes.Tests.ViewModels
         }
 
         [TestMethod]
-        public void ColourSelect_SelectedColour_IsUnselected()
+        public void ColourSelect_SelectedColour_IsUnselected_AndRemovedFromSelectedColoursList()
         {
+            ColourItem colourToBeUnselected = new ColourItem { ColourData = "hex", IsSelected = true, Name = "SelectedColour" };
+
+            _coloursService.Setup(c => c.GetColours()).Returns(
+                new List<ColourItem>
+                {
+                    colourToBeUnselected,
+                    new ColourItem{ ColourData = "hex1", IsSelected=false, Name="UnSelectedColour" },
+                    new ColourItem{ ColourData = "hex2", IsSelected=false, Name="UnSelectedColour2" },
+                });
+
             model = new CustomColourSelectPageViewModel(_navigationService.Object, _appDataService.Object, _coloursService.Object, _dialogService.Object);
 
-            ColourItem selectedColourItem = new ColourItem { ColourData = "hex", IsSelected = true, Name = "SelectedColour" };
-            model.Colours = new List<ColourItem>
-            {
-                selectedColourItem,
-                new ColourItem{ ColourData = "hex1", IsSelected=false, Name="UnSelectedColour" },
-                new ColourItem{ ColourData = "hex2", IsSelected=false, Name="UnSelectedColour2" },
-            };
+            model.SelectedColours.Add(colourToBeUnselected);
 
-            model.ColourSelect(selectedColourItem);
+            model.ColourSelect(colourToBeUnselected);
 
-            Assert.IsFalse(selectedColourItem.IsSelected);
+            Assert.IsFalse(colourToBeUnselected.IsSelected);
+            Assert.IsFalse(model.SelectedColours.Contains(colourToBeUnselected));
+        }
+
+        [TestMethod]
+        public void ColourSelect_Colour_IsSelected_AndAddedToSelectedColoursList()
+        {
+            ColourItem colourToBeSelected = new ColourItem { ColourData = "hex", IsSelected = false, Name = "SelectedColour" };
+
+            _coloursService.Setup(c => c.GetColours()).Returns(
+                new List<ColourItem>
+                {
+                    colourToBeSelected,
+                    new ColourItem{ ColourData = "hex1", IsSelected=false, Name="UnSelectedColour" },
+                    new ColourItem{ ColourData = "hex2", IsSelected=false, Name="UnSelectedColour2" },
+                });
+
+            model = new CustomColourSelectPageViewModel(_navigationService.Object, _appDataService.Object, _coloursService.Object, _dialogService.Object);
+            
+            model.ColourSelect(colourToBeSelected);
+
+            Assert.IsTrue(colourToBeSelected.IsSelected);
+            Assert.IsTrue(model.SelectedColours.Contains(colourToBeSelected));
         }
 
         [TestMethod]
@@ -91,11 +117,12 @@ namespace RandomStripes.Tests.ViewModels
 
             _navigationService.Setup(n => n.NavigateAsync(It.IsAny<string>()));
             _appDataService.Setup(a => a.SelectedColours);
-
+            
             model = new CustomColourSelectPageViewModel(_navigationService.Object, _appDataService.Object, _coloursService.Object, _dialogService.Object);
+            model.SelectedColours.Add(new ColourItem { IsSelected = true });
 
             model.NextPage("random");
-            
+
             _navigationService.Verify(n => n.NavigateAsync("StripesPage?random=True"), Times.Once);
         }
 
@@ -111,6 +138,7 @@ namespace RandomStripes.Tests.ViewModels
             _appDataService.Setup(a => a.SelectedColours);
 
             model = new CustomColourSelectPageViewModel(_navigationService.Object, _appDataService.Object, _coloursService.Object, _dialogService.Object);
+            model.SelectedColours.Add(new ColourItem { IsSelected = true });
 
             model.NextPage("notRandom");
 
