@@ -118,6 +118,7 @@
     <Compile Include="ViewModels\CustomColourSelectPageViewModelTests.cs" />
     <Compile Include="ViewModels\RowHeightsPageViewModelTests.cs" />
     <Compile Include="ViewModels\RowNumberPageViewModelTests.cs" />
+    <Compile Include="ViewModels\StripesPageViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

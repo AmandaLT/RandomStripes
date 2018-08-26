@@ -43,11 +43,11 @@ namespace RandomStripes.Tests.ViewModels
             model.rowHeights.Add(1);
             model.NextPage();
 
-            _navigationService.Verify(n => n.NavigateAsync(It.IsAny<string>()), Times.Once);
+            _navigationService.Verify(n => n.NavigateAsync("ColourSelectPage"), Times.Once);
         }
 
         [TestMethod]
-        public void HeightToggled_HeightExists_IsRemovedFromList()
+        public void HeightToggled_HeightAlreadyToggled_IsRemovedFromList()
         {
             model.rowHeights.Add(1);
             model.rowHeights.Add(3);
@@ -61,7 +61,7 @@ namespace RandomStripes.Tests.ViewModels
         }
 
         [TestMethod]
-        public void HeightToggled_HeightDoesntExist_IsAddedToList()
+        public void HeightToggled_HeightIsntToggled_IsAddedToList()
         {
             model.rowHeights.Add(1);
 

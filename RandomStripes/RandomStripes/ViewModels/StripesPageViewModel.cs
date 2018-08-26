@@ -1,9 +1,6 @@
-﻿using Prism.Commands;
-using Prism.Mvvm;
+﻿using Prism.Mvvm;
 using Prism.Navigation;
-using RandomStripes.Models;
 using RandomStripes.Services;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
@@ -11,7 +8,7 @@ using Xamarin.Forms;
 
 namespace RandomStripes.ViewModels
 {
-	public class StripesPageViewModel : BindableBase, INavigatingAware
+    public class StripesPageViewModel : BindableBase, INavigatingAware
 	{
         private IAppDataService _appDataService;
         private IStripesGenerator _stripesGenerator;
@@ -53,10 +50,18 @@ namespace RandomStripes.ViewModels
         {
             Stripes = _stripesGenerator.GenerateStripes(RandomStripes);
         }
-        
+
         public void OnNavigatingTo(NavigationParameters parameters)
         {
-            RandomStripes = bool.Parse(parameters["random"].ToString());
+            if (parameters == null || parameters["random"] == null)
+            {
+                RandomStripes = false;
+            }
+            else
+            {
+                RandomStripes = bool.Parse(parameters["random"].ToString());
+            }
+
             Stripes = _stripesGenerator.GenerateStripes(RandomStripes);
         }
     }

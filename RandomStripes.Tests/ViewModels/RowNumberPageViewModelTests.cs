@@ -33,7 +33,19 @@ namespace RandomStripes.Tests.ViewModels
             model.NextPage(string.Empty);
 
             _dialogService.Verify(d =>
-                           d.DisplayAlertAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()), Times.Once);
+                           d.DisplayAlertAsync(It.IsAny<string>(), "Oops, please enter a number of rows", It.IsAny<string>()), Times.Once);
+        }
+
+        [TestMethod]
+        public void NextPage_InvalidInputRowsEntered_ShowsAlert()
+        {
+            _dialogService.Setup(d =>
+               d.DisplayAlertAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()));
+
+            model.NextPage("notanumber");
+
+            _dialogService.Verify(d =>
+                           d.DisplayAlertAsync(It.IsAny<string>(), "Oops something went wrong, please enter a valid number", It.IsAny<string>()), Times.Once);
         }
 
         [TestMethod]

@@ -158,7 +158,7 @@ namespace RandomStripes.Tests.Services
         }
 
         [TestMethod]
-        public void GenerateStripes_Random_CreatesRandomStripes_OfTotalRows_ContainingAllSelectedColours_NoSameConsecutiveRows()
+        public void GenerateStripes_Random_CreatesRandomStripes_OfTotalRows_NoSameConsecutiveRows()
         {
             var rowCount = 4;
             var selectedColours = new List<ColourItem> {
@@ -189,9 +189,9 @@ namespace RandomStripes.Tests.Services
 
             Assert.IsTrue(stripesAreRandom, "Stripes should be random");
 
-            Assert.IsTrue(result.Contains(selectedColours.ElementAt(0)), "Stripes should contain Colour1");
-            Assert.IsTrue(result.Contains(selectedColours.ElementAt(1)), "Stripes should contain Colour2");
-            Assert.IsTrue(result.Contains(selectedColours.ElementAt(2)), "Stripes should contain Colour3");
+            //Assert.IsTrue(result.Contains(selectedColours.ElementAt(0)), "Stripes should contain Colour1");
+            //Assert.IsTrue(result.Contains(selectedColours.ElementAt(1)), "Stripes should contain Colour2");
+            //Assert.IsTrue(result.Contains(selectedColours.ElementAt(2)), "Stripes should contain Colour3");
 
             Assert.IsTrue(resultStripe1Name != resultStripe2Name, "Stripe1 shouldn't be the same as Stripe2");
             Assert.IsTrue(resultStripe2Name != resultStripe3Name, "Stripe2 shouldn't be the same as Stripe3");

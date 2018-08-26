@@ -1,17 +1,12 @@
-﻿using Prism.Commands;
-using Prism.Mvvm;
-using Prism.Navigation;
+﻿using Prism.Navigation;
 using Prism.Services;
 using RandomStripes.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace RandomStripes.ViewModels
 {
-	public class RowNumberPageViewModel : ViewModelBase
+    public class RowNumberPageViewModel : ViewModelBase
 	{
         private readonly IPageDialogService _dialogService;
 
@@ -33,7 +28,15 @@ namespace RandomStripes.ViewModels
                 _dialogService.DisplayAlertAsync("", "Oops, please enter a number of rows", "Ok");
                 return;
             }
-            var rowsCount = int.Parse(rows);
+
+            int rowsCount;
+            var rowsValid = int.TryParse(rows, out rowsCount);
+            if (!rowsValid)
+            {
+                _dialogService.DisplayAlertAsync("", "Oops something went wrong, please enter a valid number", "Ok");
+                return;
+            }
+
             _appDataService.RowCount = rowsCount;
             NavigationService.NavigateAsync("RowHeightsPage");
         }
