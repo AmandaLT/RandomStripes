@@ -117,45 +117,7 @@ namespace RandomStripes.Tests.Services
             Assert.AreEqual("Colour2", result.ElementAt(4).Name);
             Assert.AreEqual("Colour3", result.ElementAt(5).Name);
         }
-
-        [TestMethod]
-        public void GenerateStripes_Random_CreatesRandomStripes_OfTotalRows_ContainingAllSelectedColours()
-        {
-            var rowCount = 7;
-            var selectedColours = new List<ColourItem> {
-                new ColourItem{ Name="Colour1" }, new ColourItem{ Name="Colour2" }, new ColourItem{ Name="Colour3" } };
-
-            _appDataService.Setup(a => a.RowCount).Returns(rowCount);
-            _appDataService.Setup(a => a.RowHeights).Returns(new List<int> { 1 });
-            _appDataService.Setup(a => a.SelectedColours).Returns(selectedColours);
-
-            var result = _stripesGenerator.GenerateStripes(true);
-
-            Assert.AreEqual(rowCount, result.Count);
-                        
-            var generatedStripe1IsSameColourAsSelectedColour1 = result.ElementAt(0).Name == selectedColours.ElementAt(0).Name;
-            var generatedStripe2IsSameColourAsSelectedColour2 = result.ElementAt(1).Name == selectedColours.ElementAt(1).Name;
-            var generatedStripe3IsSameColourAsSelectedColour3 = result.ElementAt(2).Name == selectedColours.ElementAt(2).Name;
-            var generatedStripe4IsSameColourAsSelectedColour4 = result.ElementAt(3).Name == selectedColours.ElementAt(0).Name;
-            var generatedStripe5IsSameColourAsSelectedColour5 = result.ElementAt(4).Name == selectedColours.ElementAt(1).Name;
-            var generatedStripe6IsSameColourAsSelectedColour6 = result.ElementAt(5).Name == selectedColours.ElementAt(2).Name;
-            var generatedStripe7IsSameColourAsSelectedColour7 = result.ElementAt(6).Name == selectedColours.ElementAt(0).Name;
-
-            var stripesAreRandom = (generatedStripe1IsSameColourAsSelectedColour1 &&
-                generatedStripe2IsSameColourAsSelectedColour2 &&
-                generatedStripe3IsSameColourAsSelectedColour3 &&
-                generatedStripe4IsSameColourAsSelectedColour4 &&
-                generatedStripe5IsSameColourAsSelectedColour5 &&
-                generatedStripe6IsSameColourAsSelectedColour6 &&
-                generatedStripe7IsSameColourAsSelectedColour7) == false;
-
-            Assert.IsTrue(stripesAreRandom, "Stripes are random");
-
-            Assert.IsTrue(result.Contains(selectedColours.ElementAt(0)));
-            Assert.IsTrue(result.Contains(selectedColours.ElementAt(1)));
-            Assert.IsTrue(result.Contains(selectedColours.ElementAt(2)));
-
-        }
+               
 
         [TestMethod]
         public void GenerateStripes_Random_CreatesRandomStripes_OfTotalRows_NoSameConsecutiveRows()

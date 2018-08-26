@@ -13,13 +13,7 @@ namespace RandomStripes.ViewModels
            get{ return rowCount; }
            set { SetProperty(ref rowCount, value); }
         }
-
-        private string rowHeights;
-        public string RowHeights
-        {
-            get { return rowHeights; }
-            set { SetProperty(ref rowHeights, value); }
-        }
+               
 
         public ICommand NextCommand { get; set; }
 
@@ -29,7 +23,6 @@ namespace RandomStripes.ViewModels
             Title = "Colour Selection";
 
             RowCount = _appDataService.RowCount;
-            RowHeights = string.Join(",", _appDataService.RowHeights);
 
             NextCommand = new Command<string>(NextPage);
         }

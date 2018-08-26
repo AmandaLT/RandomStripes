@@ -49,14 +49,14 @@ namespace RandomStripes.Tests.ViewModels
         }
 
         [TestMethod]
-        public void NextPage_RowsEntered_NavigateToRowHeightsPage()
+        public void NextPage_RowsEntered_NavigateToColourSelectPage()
         {
             _navigationService.Setup(n => n.NavigateAsync(It.IsAny<string>()));
             _appDataService.Setup(a => a.RowCount);
 
             model.NextPage("23");
 
-            _navigationService.Verify(n => n.NavigateAsync("RowHeightsPage"), Times.Once);
+            _navigationService.Verify(n => n.NavigateAsync("ColourSelectPage"), Times.Once);
         }
     }
 }

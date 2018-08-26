@@ -38,7 +38,7 @@ namespace RandomStripes.ViewModels
             }
 
             _appDataService.RowCount = rowsCount;
-            NavigationService.NavigateAsync("RowHeightsPage");
+            NavigationService.NavigateAsync("ColourSelectPage");
         }
     }
 }

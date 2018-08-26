@@ -6,9 +6,8 @@
              x:Class="RandomStripes.Views.ColourSelectPage">
     
     <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
-        <Label Text="{Binding RowCount, StringFormat='Row count: {0}'}" HorizontalOptions="Center"/>
-        <Label Text="{Binding RowHeights, StringFormat='Row heights: {0}'}" HorizontalOptions="Center"/>
+        <Label Text="{Binding RowCount, StringFormat='Row count: {0}'}" HorizontalOptions="Center" Margin="0,0,0,10"/>
         <Button Text="Custom colours select" Command="{Binding NextCommand}" CommandParameter="Custom" Style="{StaticResource PurpleButton}"/>
-        <Button Text="Select colours from a palette" Command="{Binding NextCommand}" CommandParameter="Palette" Style="{StaticResource PurpleButton}"/>
+        <Button Text="Select a colour palette" Command="{Binding NextCommand}" CommandParameter="Palette" Style="{StaticResource PurpleButton}"/>
     </StackLayout>
 </ContentPage>

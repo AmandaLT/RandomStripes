@@ -13,7 +13,7 @@
     </ContentPage.Resources>
 
     <StackLayout >
-        <Label Text="Tap to select a palette" Margin="10" TextColor="Black"/>
+        <Label Text="Tap to select a palette: " Margin="10" TextColor="Black"/>
 
         <ListView BackgroundColor="Transparent" HasUnevenRows="True" ItemsSource="{Binding Palettes}" SeparatorVisibility="None" >
             <ListView.ItemTemplate>

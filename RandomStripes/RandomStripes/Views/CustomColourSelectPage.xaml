@@ -15,7 +15,7 @@
         <StackLayout HorizontalOptions="CenterAndExpand">
 
             <StackLayout VerticalOptions="Start" BackgroundColor="Transparent">
-                <RelativeLayout VerticalOptions="Start"  BackgroundColor="Transparent" HeightRequest="50">
+                <RelativeLayout VerticalOptions="Start"  BackgroundColor="Transparent" HeightRequest="50"  Margin="10,0,0,0">
                     <ListView  Rotation="270" ItemsSource="{Binding SelectedColours}"  SeparatorVisibility="None" HasUnevenRows="True"
                               RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.5, Constant=-50}"
                               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=-0.5, Constant=0}"
@@ -40,7 +40,7 @@
                 </RelativeLayout>
             </StackLayout>
 
-            <Label Text="Select your colours" Margin="10"/>
+            <Label Text="Select your colours: " Margin="10"/>
             <ScrollView VerticalOptions="FillAndExpand">
                 <ListView ItemsSource="{Binding Colours}" RowHeight="100" HasUnevenRows="True">
                     <ListView.ItemTemplate>
