@@ -55,6 +55,9 @@
     <Reference Include="Moq, Version=4.9.0.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
       <HintPath>..\packages\Moq.4.9.0\lib\net45\Moq.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="Prism, Version=7.0.0.396, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
@@ -111,11 +114,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Services\AppDataServiceTests.cs" />
     <Compile Include="Services\ColoursInMemoryServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\StripesGeneratorTests.cs" />
     <Compile Include="ViewModels\ColourSelectPageViewModelTests.cs" />
     <Compile Include="ViewModels\CustomColourSelectPageViewModelTests.cs" />
+    <Compile Include="ViewModels\PaletteColourSelectPageViewModelTests.cs" />
     <Compile Include="ViewModels\RowHeightsPageViewModelTests.cs" />
     <Compile Include="ViewModels\RowNumberPageViewModelTests.cs" />
     <Compile Include="ViewModels\StripesPageViewModelTests.cs" />

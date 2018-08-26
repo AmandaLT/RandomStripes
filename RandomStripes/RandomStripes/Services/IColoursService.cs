@@ -9,5 +9,6 @@ namespace RandomStripes.Services
     public interface IColoursService
     {
         List<ColourItem> GetColours();
+        List<ColourPalette> GetColourPalettes();
     }
 }

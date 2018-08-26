@@ -1,39 +1,31 @@
 ﻿using Newtonsoft.Json;
-using RandomStripes.Models;
 using RandomStripes.ViewModels;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using Xamarin.Forms;
 
 namespace RandomStripes.Services
 {
     public class AppDataService : IAppDataService
      {
-        //public static PatternDetails PatternDetails
-        //{
-        //    get
-        //    {
-        //        var detailsString = Application.Current.Properties["PatternDetails"].ToString();
-        //        return JsonConvert.DeserializeObject<PatternDetails>(detailsString);
-        //    }
-        //    set
-        //    {
-        //        Application.Current.Properties["PatternDetails"] = JsonConvert.SerializeObject(value);
-        //        Application.Current.SavePropertiesAsync();
-        //    }
-        //}
+        private IApplicationWrapper _applicationWrapper;
+
+        public AppDataService(IApplicationWrapper applicationWrapper)
+        {
+            _applicationWrapper = applicationWrapper;
+        }
 
         public int RowCount
         {
             get
             {
-                var rows = Application.Current.Properties["RowCount"].ToString();
-                return int.Parse(rows);
+                object rowObject;
+                var hasRowCount = _applicationWrapper.Properties.TryGetValue("RowCount", out rowObject);
+                var row = hasRowCount ? rowObject.ToString() : "0";
+                return int.Parse(row);
             }
             set
             {
-                Application.Current.Properties["RowCount"] = value;
+                _applicationWrapper.Properties["RowCount"] = value;
                 Application.Current.SavePropertiesAsync();
             }
         }
@@ -42,12 +34,14 @@ namespace RandomStripes.Services
         {
             get
             {
-                var heights = Application.Current.Properties["RowHeight"].ToString();
-                return JsonConvert.DeserializeObject<List<int>>(heights);
+                object rowHeightsObject;
+                var hasRowCount = _applicationWrapper.Properties.TryGetValue("RowHeights", out rowHeightsObject);
+                var rowHeights = hasRowCount ? JsonConvert.DeserializeObject<List<int>>(rowHeightsObject.ToString()) : new List<int>();
+                return rowHeights;
             }
             set
             {
-                Application.Current.Properties["RowHeight"] = JsonConvert.SerializeObject(value);
+                _applicationWrapper.Properties["RowHeights"] = JsonConvert.SerializeObject(value);
                 Application.Current.SavePropertiesAsync();
             }
         }
@@ -56,8 +50,10 @@ namespace RandomStripes.Services
         {
             get
             {
-                var colours = Application.Current.Properties["SelectedColours"].ToString();
-                return JsonConvert.DeserializeObject<List<ColourItem>>(colours);
+                object coloursObject;
+                var hasSelectedColours = _applicationWrapper.Properties.TryGetValue("SelectedColours", out coloursObject);
+                var colours = hasSelectedColours ? JsonConvert.DeserializeObject<List<ColourItem>>(coloursObject.ToString()) : new List<ColourItem>();
+                return colours;
             }
             set
             {
