@@ -11,7 +11,6 @@ namespace RandomStripes.Services
     {
         private IAppDataService _appDataService;
         private int _totalRows { get { return _appDataService.RowCount; } }
-        private List<int> _rowHeights { get { return _appDataService.RowHeights; } }
         private List<ColourItem> _selectedColours { get { return _appDataService.SelectedColours; } }
 
         public StripesGenerator(IAppDataService appDataService)

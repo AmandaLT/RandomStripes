@@ -1,6 +1,7 @@
 ﻿using Prism.Mvvm;
 using Prism.Navigation;
 using RandomStripes.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
@@ -12,14 +13,7 @@ namespace RandomStripes.ViewModels
 	{
         private IAppDataService _appDataService;
         private IStripesGenerator _stripesGenerator;
-
-        private string _coloursString;
-        public string ColoursString
-        {
-            get { return _coloursString; }
-            set { SetProperty(ref _coloursString, value); }
-        }
-
+            
         private List<ColourItem> _stripes;
         public List<ColourItem> Stripes
         {
@@ -40,15 +34,20 @@ namespace RandomStripes.ViewModels
         {
             _appDataService = appDataService;
             _stripesGenerator = stripesGenerator;
-
-            ColoursString = string.Join(", ", _appDataService.SelectedColours.Select(c =>c.Name));
-                        
+                      
             GenerateStripesCommand = new Command(GetStripes);
         }
         
         private void GetStripes()
         {
-            Stripes = _stripesGenerator.GenerateStripes(RandomStripes);
+            try
+            {
+                Stripes = _stripesGenerator.GenerateStripes(RandomStripes);
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
 
         public void OnNavigatingTo(NavigationParameters parameters)
@@ -62,7 +61,15 @@ namespace RandomStripes.ViewModels
                 RandomStripes = bool.Parse(parameters["random"].ToString());
             }
 
-            Stripes = _stripesGenerator.GenerateStripes(RandomStripes);
+            try
+            {
+                Stripes = _stripesGenerator.GenerateStripes(RandomStripes);
+            }
+            catch(Exception ex)
+            {
+                // show dialog?
+            }
+
         }
     }
 }

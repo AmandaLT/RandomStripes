@@ -54,24 +54,16 @@ namespace RandomStripes.ViewModels
 
         public void NextPage(string stripeType)
         {
-            try
+            if (!SelectedColours.Any())
             {
-                if (!SelectedColours.Any())
-                {
-                    _dialogService.DisplayAlertAsync("", "Oops, please select some colours", "Ok");
-                    return;
-                }
-
-                _appDataService.SelectedColours = SelectedColours.ToList();
-
-                bool randomStripes = stripeType == "random";
-                NavigationService.NavigateAsync($"StripesPage?random={randomStripes}");
-
+                _dialogService.DisplayAlertAsync("", "Oops, please select some colours", "Ok");
+                return;
             }
-            catch(Exception ex)
-            {
-                var s = ex.Message;
-            }
+
+            _appDataService.SelectedColours = SelectedColours.ToList();
+
+            bool randomStripes = stripeType == "random";
+            NavigationService.NavigateAsync($"StripesPage?random={randomStripes}");
         }
     }
 }
