@@ -2,7 +2,6 @@
 using Moq;
 using Prism.Navigation;
 using Prism.Services;
-using RandomStripes.Models;
 using RandomStripes.Services;
 using RandomStripes.ViewModels;
 using System.Collections.Generic;

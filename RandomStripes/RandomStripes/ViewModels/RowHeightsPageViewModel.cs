@@ -1,9 +1,6 @@
-﻿using Prism.Commands;
-using Prism.Mvvm;
-using Prism.Navigation;
+﻿using Prism.Navigation;
 using Prism.Services;
 using RandomStripes.Services;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
@@ -11,7 +8,7 @@ using Xamarin.Forms;
 
 namespace RandomStripes.ViewModels
 {
-	public class RowHeightsPageViewModel : ViewModelBase
+    public class RowHeightsPageViewModel : ViewModelBase
     {
        
         public ICommand NextCommand { get; set; }

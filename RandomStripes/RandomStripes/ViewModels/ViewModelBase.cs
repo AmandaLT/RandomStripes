@@ -1,10 +1,6 @@
-﻿using Prism.Commands;
-using Prism.Mvvm;
+﻿using Prism.Mvvm;
 using Prism.Navigation;
 using RandomStripes.Services;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace RandomStripes.ViewModels
 {
